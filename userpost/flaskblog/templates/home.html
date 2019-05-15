@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+        {% block content %}
+            {% for post in posts %}
+
+              <div class="col-md-12">
+                <div class="well">
+                  <h4 class="text-danger"><span class="label label-danger pull-left"></span> {{ post.title }} </h4>
+                    <h6 class="text-danger"><span class="label label-danger pull-left"></span> By {{ post.author.username}} on {{ post.date_posted }} </h6>
+                    <p>{{ post.content }}</p>
+                </div>
+              </div>
+        <hr>
+
+            {% endfor %}
+        {% endblock content %}
+
+    </div><!--/row-->
+  </div><!--/col-12-->
+</div><!--/row-->

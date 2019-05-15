@@ -1,0 +1,21 @@
+.article-metadata a:hover{
+    color : #333;
+    text-decoration : none;
+}
+
+.article-svg {
+    width : 25px;
+    height : 25px;
+    verticle-alignment : middle;
+}
+
+.account-img {
+    width : 125px;
+    height : 125px;
+    margin-right : 20px;
+    margin-bottom : 16px;
+}
+
+.account-heading {
+    font-size : 2.5rem;
+}

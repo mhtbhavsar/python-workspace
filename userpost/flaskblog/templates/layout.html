@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+
+        {% if title %}
+         <title>{{ title }}</title>
+
+        {% else %}
+         <title>Home page</title>
+
+        {% endif %}
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('about') }}">About</a>
+      </li>
+
+       {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Welcome {{ current_user.username }}!  </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('new_post') }}">Create Post </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+            {% else %}
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+          </li>
+       {% endif %}
+
+    </ul>
+  </div>
+</nav>
+  <main role="main"  class="container">
+      <div class="row">
+          <div class="col-md-8">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+            {% block content %} {% endblock content %}
+          </div>
+          <div class="col-md-4">
+            <div class="content-section">
+                <h3>
+                    Our Sidebar
+                </h3>
+                <ul>
+                    <li>Latest Posts</li>
+                    <li>Announcements</li>
+                    <li>Calender</li>
+                    <li>etc</li>
+                </ul>
+            </div>
+          </div>
+      </div>
+  </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
